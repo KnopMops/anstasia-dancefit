@@ -1,29 +1,121 @@
 @import 'tailwindcss';
 
 :root {
-	--background: #e8f4fc; /* голубой фон */
-	--foreground: #7c3aed; /* сиреневый текст */
+	--background-start: #e3f2fd; /* светло-голубой */
+	--background-end: #f3e8ff; /* нежно-сиреневый */
+	--foreground: #7c3aed;
 	--font-sans: var(--font-poppins), sans-serif;
 }
 
 @theme inline {
-	--color-background: var(--background);
+	--color-background: var(--background-start);
 	--color-foreground: var(--foreground);
 	--font-sans: var(--font-poppins);
 }
 
-body {
-	background-color: var(--background);
-	color: var(--foreground);
-	font-family: var(--font-sans);
-}
-
-/* Плавная прокрутка для якорных ссылок */
 html {
 	scroll-behavior: smooth;
 }
 
-/* Дополнительные утилиты */
-.image-placeholder {
-	@apply flex items-center justify-center rounded-2xl bg-gradient-to-br from-violet-200 to-sky-200 shadow-lg shadow-violet-200/50 text-violet-700 font-semibold;
+body {
+	background: linear-gradient(
+		135deg,
+		var(--background-start) 0%,
+		var(--background-end) 100%
+	);
+	background-attachment: fixed;
+	color: var(--foreground);
+	font-family: var(--font-sans);
+	position: relative;
+}
+
+/* Лёгкий шум для ощущения текстуры */
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: -1;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Убираем жёсткую симметрию у заголовков */
+.hand-drawn-line {
+	display: block;
+	width: 90px;
+	height: 6px;
+	background: #7c3aed;
+	margin: 15px auto 0;
+	border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+	transform: rotate(-1deg);
+	opacity: 0.8;
+}
+
+/* Асимметричные скругления для карточек */
+.card-natural {
+	border-radius: 2rem 1.2rem 2.5rem 1.8rem;
+	background: rgba(255, 255, 255, 0.65);
+	backdrop-filter: blur(4px);
+	box-shadow: 0 15px 35px -15px rgba(124, 58, 237, 0.25);
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.card-natural:hover {
+	transform: translateY(-5px) rotate(-0.5deg);
+	box-shadow: 0 20px 40px -15px rgba(124, 58, 237, 0.35);
+}
+
+/* Вторая карточка чуть сдвигается вниз для неидеальной сетки */
+.md\:offset-down {
+	transform: translateY(20px);
+}
+
+/* Органичная кнопка */
+.btn-organic {
+	display: inline-block;
+	background: #7c3aed;
+	color: white;
+	padding: 0.9rem 2.2rem;
+	border-radius: 2rem 1.5rem 2rem 1.5rem;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 10px 25px -10px rgba(124, 58, 237, 0.5);
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease,
+		background 0.2s ease;
+}
+
+.btn-organic:hover {
+	background: #6d28d9;
+	transform: translateY(-2px) rotate(-0.5deg);
+	box-shadow: 0 15px 30px -10px rgba(124, 58, 237, 0.6);
+}
+
+/* Декоративный размытый круг за hero */
+.hero-blob {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background: rgba(196, 181, 253, 0.4);
+	filter: blur(80px);
+	border-radius: 70% 30% 50% 50% / 40% 60% 40% 60%;
+	z-index: -1;
+}
+
+/* Изображения с мягкими тенями и скруглениями */
+.img-natural {
+	border-radius: 1.8rem 1rem 2rem 1.2rem;
+	box-shadow: 0 12px 25px -10px rgba(124, 58, 237, 0.25);
+}
+
+@media (max-width: 768px) {
+	.md\:offset-down {
+		transform: none;
+	}
 }

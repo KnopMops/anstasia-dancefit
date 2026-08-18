@@ -9,9 +9,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-	title: 'DanceClub — Шаг к уверенности',
+	title: 'DanceFit — Шаг к уверенности',
 	description:
-		'Клуб танцев. Зумба, Bodysculpt, стретчинг, шпагат. Групповые и индивидуальные тренировки. Спецкурс со съемкой.',
+		'Клуб танцев DanceFit. Зумба, Bodysculpt, стретчинг, шпагат. Групповые и индивидуальные тренировки. Спецкурс со съемкой.',
 }
 
 export default function RootLayout({
